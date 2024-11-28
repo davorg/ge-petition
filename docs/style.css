@@ -1,7 +1,3 @@
-.right-align {
-  text-align: right;
-}
-
 .scrollable-table {
   display: block;
   max-height: 400px; /* Adjust the height as needed */
@@ -18,13 +14,6 @@
   position: sticky;
   bottom: 0;
   background: white;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
 }
 
 body {
