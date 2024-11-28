@@ -1,5 +1,8 @@
 .scrollable-table {
   display: block;
+}
+
+.scrollable-table tbody {
   max-height: 400px; /* Adjust the height as needed */
   overflow-y: auto;
 }
@@ -15,4 +18,3 @@
   bottom: 0;
   background: white;
 }
-

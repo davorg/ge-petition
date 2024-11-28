@@ -19,7 +19,7 @@ fetch('700143.json')
       const countCell = document.createElement('td');
       nameCell.textContent = item.name;
       countCell.textContent = formatNumberWithCommas(item.signature_count);
-      countCell.classList.add('right-align');
+      countCell.classList.add('text-end');
       row.appendChild(nameCell);
       row.appendChild(countCell);
       constituencyTableBody.appendChild(row);
@@ -38,7 +38,7 @@ fetch('700143.json')
       const countCell = document.createElement('td');
       nameCell.textContent = item.name;
       countCell.textContent = formatNumberWithCommas(item.signature_count);
-      countCell.classList.add('right-align');
+      countCell.classList.add('text-end');
       row.appendChild(nameCell);
       row.appendChild(countCell);
       countryTableBody.appendChild(row);
@@ -60,7 +60,7 @@ fetch('700143.json')
     const ukCountCell = document.createElement('td');
     ukNameCell.textContent = 'UK';
     ukCountCell.textContent = formatNumberWithCommas(ukSignatures);
-    ukCountCell.classList.add('right-align');
+    ukCountCell.classList.add('text-end');
     ukRow.appendChild(ukNameCell);
     ukRow.appendChild(ukCountCell);
     ukVsNonUkTableBody.appendChild(ukRow);
