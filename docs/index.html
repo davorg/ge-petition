@@ -18,6 +18,18 @@
     <div class="row">
       <h1>UK General Election Petition</h1>
     </div>
+    <div class="row">
+      <h2>Signatures by constituency</h2>
+      <ul id="signatures-by-constituency"></ul>
+    </div>
+    <div class="row">
+      <h2>Signatures by country</h2>
+      <ul id="signatures-by-country"></ul>
+    </div>
+    <div class="row">
+      <h2>UK vs non-UK signatures</h2>
+      <ul id="uk-vs-non-uk-signatures"></ul>
+    </div>
   </div>
   <footer class="footer bg-light" style="position: fixed; bottom: 0; width: 100%; text-align: center;">
     <div class="container">
@@ -27,5 +39,44 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
           integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
           crossorigin="anonymous"></script>
+  <script>
+    fetch('700143.json')
+      .then(response => response.json())
+      .then(data => {
+        const signaturesByConstituency = data.data.attributes.signatures_by_constituency;
+        const signaturesByCountry = data.data.attributes.signatures_by_country;
+
+        const constituencyList = document.getElementById('signatures-by-constituency');
+        signaturesByConstituency.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${item.name}: ${item.signature_count}`;
+          constituencyList.appendChild(listItem);
+        });
+
+        const countryList = document.getElementById('signatures-by-country');
+        signaturesByCountry.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${item.name}: ${item.signature_count}`;
+          countryList.appendChild(listItem);
+        });
+
+        const ukSignatures = signaturesByCountry.find(item => item.code === 'GB').signature_count;
+        const nonUkSignatures = signaturesByCountry.reduce((acc, item) => {
+          if (item.code !== 'GB') {
+            return acc + item.signature_count;
+          }
+          return acc;
+        }, 0);
+
+        const ukVsNonUkList = document.getElementById('uk-vs-non-uk-signatures');
+        const ukListItem = document.createElement('li');
+        ukListItem.textContent = `UK: ${ukSignatures}`;
+        ukVsNonUkList.appendChild(ukListItem);
+
+        const nonUkListItem = document.createElement('li');
+        nonUkListItem.textContent = `Non-UK: ${nonUkSignatures}`;
+        ukVsNonUkList.appendChild(nonUkListItem);
+      });
+  </script>
 </body>
 </html>
