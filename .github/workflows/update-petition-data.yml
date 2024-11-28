@@ -1,6 +1,7 @@
 name: Update Petition Data
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '15,45 * * * *'
 
