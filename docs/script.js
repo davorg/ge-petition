@@ -77,7 +77,7 @@ fetch('700143.json')
     const nonUkCountCell = document.createElement('td');
     nonUkNameCell.textContent = 'Non-UK';
     nonUkCountCell.textContent = formatNumberWithCommas(nonUkSignatures);
-    nonUkCountCell.classList.add('right-align');
+    nonUkCountCell.classList.add('text-end');
     nonUkRow.appendChild(nonUkNameCell);
     nonUkRow.appendChild(nonUkCountCell);
     ukVsNonUkTableBody.appendChild(nonUkRow);
