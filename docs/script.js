@@ -2,6 +2,13 @@ function formatNumberWithCommas(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function updateFooterWithTimestamps() {
+  const now = new Date();
+  const lastUpdate = now.toISOString().slice(0, 16).replace('T', ' ');
+  const nextUpdate = new Date(now.getTime() + 30 * 60000).toISOString().slice(0, 16).replace('T', ' ');
+  document.getElementById('data-update-info').textContent = `Last data update: ${lastUpdate} / Next data update: ${nextUpdate}`;
+}
+
 fetch('700143.json')
   .then(response => response.json())
   .then(data => {
@@ -76,4 +83,6 @@ fetch('700143.json')
     ukVsNonUkTableBody.appendChild(nonUkRow);
 
     document.getElementById('total-uk-vs-non-uk-signatures').textContent = formatNumberWithCommas(ukSignatures + nonUkSignatures);
+
+    updateFooterWithTimestamps();
   });
