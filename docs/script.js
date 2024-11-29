@@ -15,9 +15,6 @@ fetch('700143.json')
     const signaturesByConstituency = data.data.attributes.signatures_by_constituency;
     const signaturesByCountry = data.data.attributes.signatures_by_country;
 
-    // Sort the signaturesByConstituency array alphabetically by name
-    signaturesByConstituency.sort((a, b) => a.name.localeCompare(b.name));
-
     const constituencyTableBody = document.getElementById('signatures-by-constituency').getElementsByTagName('tbody')[0];
     let totalSignaturesByConstituency = 0;
     signaturesByConstituency.forEach(item => {
@@ -33,9 +30,6 @@ fetch('700143.json')
       totalSignaturesByConstituency += item.signature_count;
     });
     document.getElementById('total-signatures-by-constituency').textContent = formatNumberWithCommas(totalSignaturesByConstituency);
-
-    // Sort the signaturesByCountry array alphabetically by name
-    signaturesByCountry.sort((a, b) => a.name.localeCompare(b.name));
 
     const countryTableBody = document.getElementById('signatures-by-country').getElementsByTagName('tbody')[0];
     let totalSignaturesByCountry = 0;
@@ -83,6 +77,10 @@ fetch('700143.json')
     ukVsNonUkTableBody.appendChild(nonUkRow);
 
     document.getElementById('total-uk-vs-non-uk-signatures').textContent = formatNumberWithCommas(ukSignatures + nonUkSignatures);
+
+    $('#signatures-by-constituency').DataTable();
+    $('#signatures-by-country').DataTable();
+    $('#uk-vs-non-uk-signatures').DataTable();
 
     updateFooterWithTimestamps();
   });
