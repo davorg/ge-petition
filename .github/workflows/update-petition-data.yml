@@ -3,7 +3,7 @@ name: Update Petition Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15,45 * * * *'
+    - cron: '0 2 * * *'
 
 jobs:
   update-data:
@@ -19,7 +19,7 @@ jobs:
     - name: Update footer with timestamps
       run: |
         now=$(date -u +"%Y-%m-%d %H:%M")
-        next_update=$(date -u -d "+30 minutes" +"%Y-%m-%d %H:%M")
+        next_update=$(date -u -d "+1 day" +"%Y-%m-%d %H:%M")
         sed -i "s/Last data update: .*/Last data update: $now \/ Next data update: $next_update/" docs/index.html
 
     - name: Commit changes
