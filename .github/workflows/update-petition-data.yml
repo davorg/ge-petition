@@ -3,7 +3,7 @@ name: Update Petition Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * 6'
 
 jobs:
   update-data:
